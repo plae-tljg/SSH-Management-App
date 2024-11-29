@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/hostInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="SSH 主机地址"
+        android:inputType="text"
+        android:text=""
+        android:padding="12dp"
+        android:layout_marginBottom="8dp"/>
+
+    <EditText
+        android:id="@+id/usernameInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="用户名"
+        android:inputType="text"
+        android:text=""
+        android:padding="12dp"
+        android:layout_marginBottom="8dp"/>
+
+    <EditText
+        android:id="@+id/passwordInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="密码"
+        android:inputType="textPassword"
+        android:text=""
+        android:padding="12dp"
+        android:layout_marginBottom="8dp"/>
+
+    <Button
+        android:id="@+id/connectButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="连接" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <TextView
+            android:id="@+id/terminalOutput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#000000"
+            android:textColor="#00FF00"
+            android:typeface="monospace"
+            android:padding="8dp"
+            android:scrollbars="vertical"
+            android:gravity="bottom" />
+
+    </ScrollView>
+
+    <EditText
+        android:id="@+id/commandInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="输入命令"
+        android:imeOptions="actionSend"
+        android:inputType="text" />
+
+</LinearLayout> 
