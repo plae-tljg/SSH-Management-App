@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_name">SSHTool</string>
-    <string name="default_ssh_host">192.168.1.100</string>
-    <string name="default_ssh_username">your_username</string>
-    <string name="default_ssh_password">your_password</string>
-</resources>

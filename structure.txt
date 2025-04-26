@@ -1,0 +1,122 @@
+模块化设计说明：
+每个功能模块都是完全独立的：
+每个功能（terminal、file_manager、connection）都有自己的完整结构
+包含自己的数据层、领域层和表现层
+模块间通过接口通信，降低耦合
+清晰的依赖关系：
+使用依赖注入管理模块间依赖
+每个模块只依赖必要的其他模块
+通过接口定义明确的契约
+维护性优化：
+每个功能最多只需要查看2-3个文件就能理解
+例如，要修改终端功能，只需要关注：
+terminal_controller.dart - 业务逻辑
+terminal_view.dart - 界面实现
+terminal_repository.dart - 数据操作
+具体功能模块说明：
+终端模块：
+terminal_controller.dart - 处理终端会话逻辑
+terminal_view.dart - 终端界面实现
+terminal_repository.dart - SSH连接管理
+文件管理器模块：
+file_manager_controller.dart - 文件操作逻辑
+file_list.dart - 文件列表显示
+file_manager_repository.dart - SFTP操作
+连接管理模块：
+connection_controller.dart - 连接配置管理
+connection_form.dart - 连接配置界面
+connection_repository.dart - 连接数据存储
+开发建议：
+采用特性优先开发：
+先完成连接管理模块
+然后实现终端功能
+最后添加文件管理器
+每个模块独立测试：
+为每个模块编写单元测试
+确保模块间接口稳定
+便于后续维护和更新
+版本控制策略：
+每个功能模块独立分支
+使用特性分支进行开发
+通过PR合并到主分支
+这样的结构设计确保了：
+每个功能都是独立的，易于维护
+代码组织清晰，易于理解
+修改某个功能时，只需要关注相关文件
+便于团队协作和代码审查
+您觉得这个优化后的结构如何？我们可以开始实现第一个模块了。
+
+
+lib/
+├── core/
+│   ├── config/
+│   │   ├── app_config.dart
+│   │   └── theme_config.dart
+│   ├── di/
+│   │   └── dependency_injection.dart
+│   └── utils/
+│       ├── logger.dart
+│       └── validators.dart
+│
+├── features/
+│   ├── terminal/
+│   │   ├── data/
+│   │   │   ├── models/
+│   │   │   │   └── terminal_session.dart
+│   │   │   └── repositories/
+│   │   │       └── terminal_repository_impl.dart
+│   │   ├── domain/
+│   │   │   ├── entities/
+│   │   │   │   └── terminal_session.dart
+│   │   │   └── repositories/
+│   │   │       └── terminal_repository.dart
+│   │   └── presentation/
+│   │       ├── pages/
+│   │       │   └── terminal_page.dart
+│   │       ├── widgets/
+│   │       │   ├── terminal_view.dart
+│   │       │   └── command_input.dart
+│   │       └── controllers/
+│   │           └── terminal_controller.dart
+│   │
+│   ├── file_manager/
+│   │   ├── data/
+│   │   │   ├── models/
+│   │   │   │   └── file_item.dart
+│   │   │   └── repositories/
+│   │   │       └── file_manager_repository_impl.dart
+│   │   ├── domain/
+│   │   │   ├── entities/
+│   │   │   │   └── file_item.dart
+│   │   │   └── repositories/
+│   │   │       └── file_manager_repository.dart
+│   │   └── presentation/
+│   │       ├── pages/
+│   │       │   └── file_manager_page.dart
+│   │       ├── widgets/
+│   │       │   ├── file_list.dart
+│   │       │   └── file_operations.dart
+│   │       └── controllers/
+│   │           └── file_manager_controller.dart
+│   │
+│   └── connection/
+│       ├── data/
+│       │   ├── models/
+│       │   │   └── connection_config.dart
+│       │   └── repositories/
+│       │       └── connection_repository_impl.dart
+│       ├── domain/
+│       │   ├── entities/
+│       │   │   └── connection_config.dart
+│       │   └── repositories/
+│       │       └── connection_repository.dart
+│       └── presentation/
+│           ├── pages/
+│           │   └── connection_page.dart
+│           ├── widgets/
+│           │   ├── connection_form.dart
+│           │   └── connection_list.dart
+│           └── controllers/
+│               └── connection_controller.dart
+│
+└── main.dart
